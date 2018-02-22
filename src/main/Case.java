@@ -5,6 +5,8 @@
  */
 package main;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Sylvain
@@ -69,6 +71,24 @@ public class Case implements Parametres {
         } else {
             return false;
         }
+    }
+    
+    public boolean valeurAdjacente(Case c, ArrayList fibo) {
+    	int valeurinf;
+    	int valeursup;
+    	if (c.getValeur()>this.valeur) {
+    		valeurinf=fibo.indexOf(this.valeur);
+    		valeursup=fibo.indexOf(c.getValeur());
+    	}else {
+    		valeurinf=fibo.indexOf(c.getValeur());
+    		valeursup=fibo.indexOf(this.valeur);    		
+    	}
+
+    	if(valeurinf==valeursup-1) {
+    		return this.valeur==c.valeur;
+    	}else {
+    		return false;
+    	}
     }
 
     public Case getVoisinDirect(int direction) {

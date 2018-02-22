@@ -20,6 +20,7 @@ public class Grille implements Parametres {
     private final HashSet<Case> grille;
     private int valeurMax = 0;
     private boolean deplacement;
+    
 
     public Grille() {
         this.grille = new HashSet<>();
@@ -97,6 +98,7 @@ public class Grille implements Parametres {
         }
         return deplacement;
     }
+
 
     private void fusion(Case c) {
         c.setValeur(c.getValeur() * 2);
