@@ -24,7 +24,8 @@ public class Grille implements Parametres {
 
     public Grille() {
         this.grille = new HashSet<>();
-        for(int i=0; fibo.get(i)<2585; i++) {
+        this.fibo = new ArrayList<Long>();
+        for(int i=0; i<17; i++) {
         	this.fibo.add(Fibonacci.fibonacci(i));
         }
     }
@@ -200,7 +201,8 @@ public class Grille implements Parametres {
         if (this.grille.size() < TAILLE * TAILLE) {
             ArrayList<Case> casesLibres = new ArrayList<>();
             Random ra = new Random();
-            int valeur = (1 + ra.nextInt(2)) * 2;
+            int valeur;
+            if(ra.nextDouble()<0.75) valeur = 1; else valeur = 2;
             // on crée toutes les cases encore libres
             for (int x = 0; x < TAILLE; x++) {
                 for (int y = 0; y < TAILLE; y++) {
