@@ -6,7 +6,6 @@ public class Main implements Parametres{
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-
         Partie p = new Partie();
         
         int direction = p.saisieDplcmt();
@@ -19,7 +18,7 @@ public class Main implements Parametres{
         //System.out.println(g);
         //if (g.getValeurMax()>=OBJECTIF) g.victory();
             
-        
+       
 
 
 	}
