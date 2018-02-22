@@ -8,5 +8,7 @@ public class Partie {
 		this.joueur1 = new Humain();
 		this.joueur2 = new Ordinateur();
 	}
+	
+	
 
 }
