@@ -5,7 +5,6 @@
  */
 package main;
 
-i
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -25,8 +24,8 @@ public class Grille implements Parametres {
 
     public Grille() {
         this.grille = new HashSet<>();
-        for(int i=0; fibo[i]<2585; i++) {
-        	this.fibo[i] = Fibonacci.fibonacci(i);
+        for(int i=0; fibo.get(i)<2585; i++) {
+        	this.fibo.add(Fibonacci.fibonacci(i));
         }
     }
 
