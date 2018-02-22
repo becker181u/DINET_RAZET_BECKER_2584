@@ -9,6 +9,7 @@ public class Main implements Parametres{
         boolean b = g.nouvelleCase();
         b = g.nouvelleCase();
         System.out.println(g);
+        
         Partie p = new Partie();
         
         int direction = p.saisieDplcmt();
@@ -21,7 +22,7 @@ public class Main implements Parametres{
         System.out.println(g);
         if (g.getValeurMax()>=OBJECTIF) g.victory();
             
-        
+       
 
 
 	}
