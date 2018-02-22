@@ -9,4 +9,5 @@ public interface Parametres {
     static final int BAS = -1;
     static final int GAUCHE = -2;
     static final int TAILLE = 4;
+    
 }

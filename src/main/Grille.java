@@ -103,6 +103,7 @@ public class Grille implements Parametres {
         return deplacement;
     }
 
+
     private void fusion(Case c) {
         c.setValeur(c.getValeur() * 2);
         if (this.valeurMax < c.getValeur()) {
