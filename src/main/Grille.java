@@ -192,10 +192,7 @@ public class Grille implements Parametres {
         System.exit(0);
     }
 
-    public void gameOver() {
-        System.out.println("La partie est finie. Votre score est " + this.valeurMax);
-        System.exit(1);
-    }
+
 
     public boolean nouvelleCase() {
         if (this.grille.size() < TAILLE * TAILLE) {
@@ -207,7 +204,8 @@ public class Grille implements Parametres {
             for (int x = 0; x < TAILLE; x++) {
                 for (int y = 0; y < TAILLE; y++) {
                     Case c = new Case(x, y, valeur);
-                    if (!this.grille.contains(c)) { // contains utilise la méthode equals dans Case
+                    if (!this.grille.contains(c)) { 
+                    	// contains utilise la méthode equals dans Case
                         casesLibres.add(c);
                     }
                 }
@@ -216,7 +214,7 @@ public class Grille implements Parametres {
             Case ajout = casesLibres.get(ra.nextInt(casesLibres.size()));
             ajout.setGrille(this);
             this.grille.add(ajout);
-            if ((this.grille.size() == 1) || (this.valeurMax == 2 && ajout.getValeur() == 4)) { // Mise à jour de la valeur maximale présente dans la grille si c'est la première case ajoutée ou si on ajoute un 4 et que l'ancien max était 2
+            if ((this.grille.size() == 1) || (this.valeurMax == 1 && ajout.getValeur() == 2)) { // Mise à jour de la valeur maximale présente dans la grille si c'est la première case ajoutée ou si on ajoute un 4 et que l'ancien max était 2
                 this.valeurMax = ajout.getValeur();
             }
             return true;

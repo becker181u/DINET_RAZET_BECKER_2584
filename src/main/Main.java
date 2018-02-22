@@ -16,13 +16,13 @@ public class Main implements Parametres{
         boolean b2 = g.lanceurDeplacerCases(direction);
         if (b2) {
             b = g.nouvelleCase();
-            if (!b) g.gameOver();
+            if (!b) p.gameOver();
         }
         System.out.println(g);
         if (g.getValeurMax()>=OBJECTIF) g.victory();
             
         
-        g.gameOver();
+
 
 	}
 
