@@ -13,7 +13,7 @@ public class Main implements Parametres{
         Scanner sc = new Scanner(System.in);
         
         while (!g.partieFinie()) {
-            System.out.println("Déplacer vers la Droite (d), Gauche (q), Haut (z), ou Bas (s) ?");
+            System.out.println("Deplacer vers la Droite (d), Gauche (q), Haut (z), ou Bas (s) ?");
             String s = sc.nextLine();
             s.toLowerCase();
             if (!(s.equals("d") || s.equals("droite")

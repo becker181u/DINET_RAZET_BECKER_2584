@@ -64,14 +64,6 @@ public class Case implements Parametres {
     public int hashCode() { // détermine le hashcode
         return this.x * 7 + this.y * 13;
     }
-
-    public boolean valeurEgale(Case c) {
-        if (c != null) {
-            return this.valeur == c.valeur;
-        } else {
-            return false;
-        }
-    }
     
     public boolean valeurAdjacente(Case c, ArrayList fibo) {
     	int valeurinf;

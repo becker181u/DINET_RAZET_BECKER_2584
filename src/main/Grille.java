@@ -70,7 +70,7 @@ public class Grille implements Parametres {
             for (Case c : this.grille) {
                 for (int i = 1; i <= 2; i++) {
                     if (c.getVoisinDirect(i) != null) {
-                        if (c.valeurEgale(c.getVoisinDirect(i))) {
+                        if (c.valeurAdjacente(c.getVoisinDirect(i), fibo)) {
                             return false;
                         }
                     }
@@ -137,7 +137,7 @@ public class Grille implements Parametres {
             }
             Case voisin = extremites[rangee].getVoisinDirect(-direction);
             if (voisin != null) {
-                if (extremites[rangee].valeurEgale(voisin)) {
+                if (extremites[rangee].valeurAdjacente(voisin,fibo)) {
                     this.fusion(extremites[rangee]);
                     extremites[rangee] = voisin.getVoisinDirect(-direction);
                     this.grille.remove(voisin);
