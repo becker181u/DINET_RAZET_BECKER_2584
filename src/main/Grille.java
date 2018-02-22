@@ -192,10 +192,7 @@ public class Grille implements Parametres {
         System.exit(0);
     }
 
-    public void gameOver() {
-        System.out.println("La partie est finie. Votre score est " + this.valeurMax);
-        System.exit(1);
-    }
+
 
     public boolean nouvelleCase() {
         if (this.grille.size() < TAILLE * TAILLE) {
