@@ -20,13 +20,12 @@ public class Grille implements Parametres {
     private final HashSet<Case> grille;
     private int valeurMax = 0;
     private boolean deplacement;
-    protected ArrayList<Long> fibo;
+    protected ArrayList<Integer> fibo;
 
     public Grille() {
         this.grille = new HashSet<>();
-        this.fibo = new ArrayList<Long>();
-        for(int i=0; i<17; i++) {
-        	this.fibo.add(Fibonacci.fibonacci(i));
+        for(int i=0; fibo.get(i)<2585; i++) {
+        	this.fibo.add((int) Fibonacci.fibonacci(i));
         }
     }
 
@@ -103,9 +102,32 @@ public class Grille implements Parametres {
         return deplacement;
     }
 
+    private int trouverLeSup(Case c) {
+    	boolean trouve= true; 
+    	int grand= 0;
+    	int i=0;
+    	if(c.getValeur()==2584) {
+    		trouve=false;
+    	}
+    	while(trouve) {
+    		grand = fibo.get(i);
+    		if(grand>c.getValeur()) {
+    			i++;
+    		}else {
+    			trouve=false; 
+    		}
+    	}
+    	return grand;
+    }
 
-    private void fusion(Case c) {
-        c.setValeur(c.getValeur() * 2);
+    private void fusion(Case c,Case voisin) {
+    	int valeur=0;
+    	if(c.getValeur()>voisin.getValeur()) {
+    		valeur=trouverLeSup(c);
+    	}else {
+    		valeur=trouverLeSup(voisin);
+    	}
+        c.setValeur(valeur);
         if (this.valeurMax < c.getValeur()) {
             this.valeurMax = c.getValeur();
         }
@@ -139,7 +161,7 @@ public class Grille implements Parametres {
             Case voisin = extremites[rangee].getVoisinDirect(-direction);
             if (voisin != null) {
                 if (extremites[rangee].valeurAdjacente(voisin,fibo)) {
-                    this.fusion(extremites[rangee]);
+                    this.fusion(extremites[rangee],voisin);
                     extremites[rangee] = voisin.getVoisinDirect(-direction);
                     this.grille.remove(voisin);
                     this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1);
@@ -201,8 +223,7 @@ public class Grille implements Parametres {
         if (this.grille.size() < TAILLE * TAILLE) {
             ArrayList<Case> casesLibres = new ArrayList<>();
             Random ra = new Random();
-            int valeur;
-            if(ra.nextDouble()<0.75) valeur = 1; else valeur = 2;
+            int valeur = (1 + ra.nextInt(2)) * 2;
             // on crée toutes les cases encore libres
             for (int x = 0; x < TAILLE; x++) {
                 for (int y = 0; y < TAILLE; y++) {
