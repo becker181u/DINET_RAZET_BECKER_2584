@@ -1,6 +1,5 @@
 package main;
 
-import java.util.Scanner;
 
 public class Main implements Parametres{
 
@@ -10,37 +9,19 @@ public class Main implements Parametres{
         boolean b = g.nouvelleCase();
         b = g.nouvelleCase();
         System.out.println(g);
-        Scanner sc = new Scanner(System.in);
+        Partie p = new Partie();
         
-        while (!g.partieFinie()) {
-            System.out.println("Deplacer vers la Droite (d), Gauche (q), Haut (z), ou Bas (s) ?");
-            String s = sc.nextLine();
-            s.toLowerCase();
-            if (!(s.equals("d") || s.equals("droite")
-                    || s.equals("q") || s.equals("gauche")
-                    || s.equals("z") || s.equals("haut")
-                    || s.equals("s") || s.equals("bas"))) {
-                System.out.println("Vous devez écrire d pour Droite, g pour Gauche, h pour Haut ou b pour Bas");
-            } else {
-                int direction;
-                if (s.equals("d") || s.equals("droite")) {
-                    direction = DROITE;
-                } else if (s.equals("q") || s.equals("gauche")) {
-                    direction = GAUCHE;
-                } else if (s.equals("z") || s.equals("haut")) {
-                    direction = HAUT;
-                } else {
-                    direction = BAS;
-                }
-                boolean b2 = g.lanceurDeplacerCases(direction);
-                if (b2) {
-                    b = g.nouvelleCase();
-                    if (!b) g.gameOver();
-                }
-                System.out.println(g);
-                if (g.getValeurMax()>=OBJECTIF) g.victory();
-            }
+        int direction = p.saisieDplcmt();
+        
+        boolean b2 = g.lanceurDeplacerCases(direction);
+        if (b2) {
+            b = g.nouvelleCase();
+            if (!b) g.gameOver();
         }
+        System.out.println(g);
+        if (g.getValeurMax()>=OBJECTIF) g.victory();
+            
+        
         g.gameOver();
 
 	}
