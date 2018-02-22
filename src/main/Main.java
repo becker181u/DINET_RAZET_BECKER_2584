@@ -25,9 +25,9 @@ public class Main implements Parametres{
                 int direction;
                 if (s.equals("d") || s.equals("droite")) {
                     direction = DROITE;
-                } else if (s.equals("g") || s.equals("gauche")) {
+                } else if (s.equals("q") || s.equals("gauche")) {
                     direction = GAUCHE;
-                } else if (s.equals("h") || s.equals("haut")) {
+                } else if (s.equals("z") || s.equals("haut")) {
                     direction = HAUT;
                 } else {
                     direction = BAS;
