@@ -24,9 +24,9 @@ public class Grille implements Parametres {
 
     public Grille() {
         this.grille = new HashSet<>();
-        for(int i=0; fibo.get(i)<2585; i++) {
-        	this.fibo.add((int) Fibonacci.fibonacci(i));
-        }
+        //for(int i=0; fibo.get(i)<2585; i++) {
+        	//this.fibo.add((int) Fibonacci.fibonacci(i));
+        //}
     }
 
     @Override
@@ -82,7 +82,7 @@ public class Grille implements Parametres {
 
     public boolean lanceurDeplacerCases(int direction) {
         Case[] extremites = this.getCasesExtremites(direction);
-        deplacement = false; // pour vérifier si on a bougé au moins une case après le déplacement, avant d'en rajouter une nouvelle
+        deplacement = false; // pour vï¿½rifier si on a bougï¿½ au moins une case aprï¿½s le dï¿½placement, avant d'en rajouter une nouvelle
         for (int i = 0; i < TAILLE; i++) {
             switch (direction) {
                 case HAUT:
@@ -175,17 +175,17 @@ public class Grille implements Parametres {
 
     /*
     * Si direction = HAUT : retourne les 4 cases qui sont le plus en haut (une pour chaque colonne)
-    * Si direction = DROITE : retourne les 4 cases qui sont le plus à droite (une pour chaque ligne)
+    * Si direction = DROITE : retourne les 4 cases qui sont le plus ï¿½ droite (une pour chaque ligne)
     * Si direction = BAS : retourne les 4 cases qui sont le plus en bas (une pour chaque colonne)
-    * Si direction = GAUCHE : retourne les 4 cases qui sont le plus à gauche (une pour chaque ligne)
-    * Attention : le tableau retourné peut contenir des null si les lignes/colonnes sont vides
+    * Si direction = GAUCHE : retourne les 4 cases qui sont le plus ï¿½ gauche (une pour chaque ligne)
+    * Attention : le tableau retournï¿½ peut contenir des null si les lignes/colonnes sont vides
      */
     public Case[] getCasesExtremites(int direction) {
         Case[] result = new Case[TAILLE];
         for (Case c : this.grille) {
             switch (direction) {
                 case HAUT:
-                    if ((result[c.getX()] == null) || (result[c.getX()].getY() > c.getY())) { // si on n'avait pas encore de case pour cette rangée ou si on a trouvé un meilleur candidat
+                    if ((result[c.getX()] == null) || (result[c.getX()].getY() > c.getY())) { // si on n'avait pas encore de case pour cette rangï¿½e ou si on a trouvï¿½ un meilleur candidat
                         result[c.getX()] = c;
                     }
                     break;
@@ -221,21 +221,21 @@ public class Grille implements Parametres {
             ArrayList<Case> casesLibres = new ArrayList<>();
             Random ra = new Random();
             int valeur = (1 + ra.nextInt(2)) * 2;
-            // on crée toutes les cases encore libres
+            // on crï¿½e toutes les cases encore libres
             for (int x = 0; x < TAILLE; x++) {
                 for (int y = 0; y < TAILLE; y++) {
                     Case c = new Case(x, y, valeur);
                     if (!this.grille.contains(c)) { 
-                    	// contains utilise la méthode equals dans Case
+                    	// contains utilise la mï¿½thode equals dans Case
                         casesLibres.add(c);
                     }
                 }
             }
-            // on en choisit une au hasard et on l'ajoute à la grille
+            // on en choisit une au hasard et on l'ajoute ï¿½ la grille
             Case ajout = casesLibres.get(ra.nextInt(casesLibres.size()));
             ajout.setGrille(this);
             this.grille.add(ajout);
-            if ((this.grille.size() == 1) || (this.valeurMax == 1 && ajout.getValeur() == 2)) { // Mise à jour de la valeur maximale présente dans la grille si c'est la première case ajoutée ou si on ajoute un 4 et que l'ancien max était 2
+            if ((this.grille.size() == 1) || (this.valeurMax == 1 && ajout.getValeur() == 2)) { // Mise ï¿½ jour de la valeur maximale prï¿½sente dans la grille si c'est la premiï¿½re case ajoutï¿½e ou si on ajoute un 4 et que l'ancien max ï¿½tait 2
                 this.valeurMax = ajout.getValeur();
             }
             return true;

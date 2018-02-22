@@ -11,6 +11,7 @@ public class Partie implements Parametres{
 		this.joueur2 = new Humain();
 	}
 	
+	
 		public int saisieDplcmt(){
 			Scanner sc = new Scanner(System.in);
 			

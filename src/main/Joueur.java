@@ -7,6 +7,9 @@ public abstract class Joueur {
 	
 	public Joueur() {
 		this.grille = new Grille();
+        boolean b = grille.nouvelleCase();
+        b = grille.nouvelleCase();
+        System.out.println(grille);
 		
 	}
 	
