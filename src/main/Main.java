@@ -8,7 +8,7 @@ public class Main implements Parametres{
 
         Partie p = new Partie();
         
-        int direction = p.saisieDplcmt();
+        p.dplcmt();
         
         //boolean b2 = g.lanceurDeplacerCases(direction);
         //if (b2) {
