@@ -105,7 +105,7 @@ public class Grille implements Parametres {
         return deplacement;
     }
 
-    private int trouverLeSup(Case c) {
+    private int trouverLeSuivant(Case c) {
     	boolean trouve= true; 
     	int grand= 0;
     	int i=0;
@@ -114,25 +114,29 @@ public class Grille implements Parametres {
     	}
     	while(trouve) {
     		grand = fibo.get(i);
-    		if(grand>c.getValeur()) {
+    		if(grand<c.getValeur()) {
     			i++;
     		}else {
     			trouve=false; 
     		}
     	}
-    	return grand;
+    	return fibo.get(i+1);
     }
 
-    private void fusion(Case c,Case voisin) {
+    private void fusion(Case extremite,Case voisin) {
+    	System.out.println("fusion");
+    	System.out.println("extremite : "+extremite.getValeur() + "voisin"+ voisin.getValeur());
     	int valeur=0;
-    	if(c.getValeur()>voisin.getValeur()) {
-    		valeur=trouverLeSup(c);
+    	if(extremite.getValeur()>voisin.getValeur()) {
+    		valeur=trouverLeSuivant(extremite);
+    		System.out.println("valeur"+valeur);
     	}else {
-    		valeur=trouverLeSup(voisin);
+    		valeur=trouverLeSuivant(voisin);
+    		System.out.println(valeur);
     	}
-        c.setValeur(valeur);
-        if (this.valeurMax < c.getValeur()) {
-            this.valeurMax = c.getValeur();
+        extremite.setValeur(valeur);
+        if (this.valeurMax < extremite.getValeur()) {
+            this.valeurMax = extremite.getValeur();
         }
         deplacement = true;
     }
@@ -164,11 +168,13 @@ public class Grille implements Parametres {
             Case voisin = extremites[rangee].getVoisinDirect(-direction);
             if (voisin != null) {
                 if (extremites[rangee].valeurAdjacente(voisin,fibo)) {
+                	System.out.println("bonjour");
                     this.fusion(extremites[rangee],voisin);
                     extremites[rangee] = voisin.getVoisinDirect(-direction);
                     this.grille.remove(voisin);
                     this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1);
                 } else {
+                	System.out.println("aurevoir");
                     extremites[rangee] = voisin;
                     this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1);
                 }
