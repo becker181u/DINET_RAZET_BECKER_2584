@@ -126,18 +126,21 @@ public class Grille implements Parametres {
     private void fusion(Case extremite,Case voisin) {
     	System.out.println("fusion");
     	System.out.println("extremite : "+extremite.getValeur() + "voisin"+ voisin.getValeur());
-    	int valeur=0;
-    	if(extremite.getValeur()>voisin.getValeur()) {
-    		valeur=trouverLeSuivant(extremite);
-    		System.out.println("valeur"+valeur);
-    	}else {
-    		valeur=trouverLeSuivant(voisin);
-    		System.out.println(valeur);
+    	if(extremite.getValeur()==1&&voisin.getValeur()==1)extremite.setValeur(2);
+    	else {
+	    	int valeur=0;
+	    	if(extremite.getValeur()>voisin.getValeur()) {
+	    		valeur=trouverLeSuivant(extremite);
+	    		System.out.println("valeur"+valeur);
+	    	}else {
+	    		valeur=trouverLeSuivant(voisin);
+	    		System.out.println(valeur);
+	    	}
+	        extremite.setValeur(valeur);
+	        if (this.valeurMax < extremite.getValeur()) {
+	            this.valeurMax = extremite.getValeur();
+	        }
     	}
-        extremite.setValeur(valeur);
-        if (this.valeurMax < extremite.getValeur()) {
-            this.valeurMax = extremite.getValeur();
-        }
         deplacement = true;
     }
 
