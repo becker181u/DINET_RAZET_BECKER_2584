@@ -67,6 +67,7 @@ public class Grille implements Parametres {
     }
 
     public boolean partieFinie() {
+    	
         if (this.grille.size() < TAILLE * TAILLE) {
             return false;
         } else {
@@ -124,17 +125,17 @@ public class Grille implements Parametres {
     }
 
     private void fusion(Case extremite,Case voisin) {
-    	System.out.println("fusion");
-    	System.out.println("extremite : "+extremite.getValeur() + "voisin"+ voisin.getValeur());
+    	//System.out.println("fusion");
+    	//System.out.println("extremite : "+extremite.getValeur() + "voisin"+ voisin.getValeur());
     	if(extremite.getValeur()==1&&voisin.getValeur()==1)extremite.setValeur(2);
     	else {
 	    	int valeur=0;
 	    	if(extremite.getValeur()>voisin.getValeur()) {
 	    		valeur=trouverLeSuivant(extremite);
-	    		System.out.println("valeur"+valeur);
+	    		//System.out.println("valeur"+valeur);
 	    	}else {
 	    		valeur=trouverLeSuivant(voisin);
-	    		System.out.println(valeur);
+	    		//System.out.println(valeur);
 	    	}
 	        extremite.setValeur(valeur);
 	        if (this.valeurMax < extremite.getValeur()) {
@@ -171,13 +172,13 @@ public class Grille implements Parametres {
             Case voisin = extremites[rangee].getVoisinDirect(-direction);
             if (voisin != null) {
                 if (extremites[rangee].valeurAdjacente(voisin,fibo)) {
-                	System.out.println("bonjour");
+                	//System.out.println("bonjour");
                     this.fusion(extremites[rangee],voisin);
                     extremites[rangee] = voisin.getVoisinDirect(-direction);
                     this.grille.remove(voisin);
                     this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1);
                 } else {
-                	System.out.println("aurevoir");
+                	//System.out.println("aurevoir");
                     extremites[rangee] = voisin;
                     this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1);
                 }
