@@ -50,12 +50,11 @@ public class Partie implements Parametres{
 	
 	public void dplcmt(){
 		
-		while(!joueur1.grille.partieFinie() || !joueur2.grille.partieFinie()){
+		while(!joueur1.grille.partieFinie() && !joueur2.grille.partieFinie()){
 			
 			System.out.println(joueur1.grille);
 			System.out.println(joueur2.grille);
 			
-			System.out.println("test");
 			this.joueur1.saisieDplcmt(1);
 			this.joueur2.saisieDplcmt(2);
 			
