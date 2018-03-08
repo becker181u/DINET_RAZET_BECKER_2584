@@ -30,7 +30,7 @@ public class Ordinateur extends Joueur implements Parametres{
 				break;
 			}
 			
-			test = this.grille.lanceurDeplacerCases(direction);
+			test = this.grille.lanceurDeplacerCases(direction, true);
 		}
 		
 	

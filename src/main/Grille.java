@@ -21,10 +21,11 @@ public class Grille implements Parametres {
     private int valeurMax = 0;
     private boolean deplacement;
     protected ArrayList<Integer> fibo;
+    private Joueur player;
 
-    public Grille() {
+    public Grille(Joueur joueur) {
         this.grille = new HashSet<>();
-
+        this.player=joueur;
         this.fibo = new ArrayList<>();
         for(int i=0; i<19; i++) {
         	this.fibo.add(Fibonacci.fibonacci(i+1));
@@ -42,6 +43,7 @@ public class Grille implements Parametres {
         for (int i = 0; i < tableau.length; i++) {
             result += Arrays.toString(tableau[i]) + "\n";
         }
+        result+="Score : "+player.getScore();
         return result;
     }
     
@@ -84,22 +86,22 @@ public class Grille implements Parametres {
         return true;
     }
 
-    public boolean lanceurDeplacerCases(int direction) {
+    public boolean lanceurDeplacerCases(int direction, boolean inter) {
         Case[] extremites = this.getCasesExtremites(direction);
         deplacement = false; // pour v�rifier si on a boug� au moins une case apr�s le d�placement, avant d'en rajouter une nouvelle
         for (int i = 0; i < TAILLE; i++) {
             switch (direction) {
                 case HAUT:
-                    this.deplacerCasesRecursif(extremites, i, direction, 0);
+                    this.deplacerCasesRecursif(extremites, i, direction, 0, inter);
                     break;
                 case BAS:
-                    this.deplacerCasesRecursif(extremites, i, direction, 0);
+                    this.deplacerCasesRecursif(extremites, i, direction, 0, inter);
                     break;
                 case GAUCHE:
-                    this.deplacerCasesRecursif(extremites, i, direction, 0);
+                    this.deplacerCasesRecursif(extremites, i, direction, 0, inter);
                     break;
                 default:
-                    this.deplacerCasesRecursif(extremites, i, direction, 0);
+                    this.deplacerCasesRecursif(extremites, i, direction, 0, inter);
                     break;
             }
         }
@@ -123,13 +125,28 @@ public class Grille implements Parametres {
     	}
     	return fibo.get(i+1);
     }
+    
+    private void changerScore(int valeur) {
+    		int score = valeur + player.getScore();
+	        player.setScore(score);
+    }
 
-    private void fusion(Case extremite,Case voisin) {
+    private void fusion(Case extremite,Case voisin, boolean inter) {
     	//System.out.println("fusion");
     	//System.out.println("extremite : "+extremite.getValeur() + "voisin"+ voisin.getValeur());
-    	if(extremite.getValeur()==1&&voisin.getValeur()==1)extremite.setValeur(2);
+    	int valeur;
+    	if(extremite.getValeur()==1&&voisin.getValeur()==1) {
+    		valeur = 2;
+    		extremite.setValeur(valeur);
+    		if(inter){
+    			changerScore(valeur);
+    		}
+    		
+
+    		
+    	}
     	else {
-	    	int valeur=0;
+	    	valeur=0;
 	    	if(extremite.getValeur()>voisin.getValeur()) {
 	    		valeur=trouverLeSuivant(extremite);
 	    		//System.out.println("valeur"+valeur);
@@ -138,6 +155,11 @@ public class Grille implements Parametres {
 	    		//System.out.println(valeur);
 	    	}
 	        extremite.setValeur(valeur);
+	        if(inter){
+	        	changerScore(valeur);
+	        }
+	        
+	        
 	        if (this.valeurMax < extremite.getValeur()) {
 	            this.valeurMax = extremite.getValeur();
 	        }
@@ -145,7 +167,7 @@ public class Grille implements Parametres {
         deplacement = true;
     }
 
-    private void deplacerCasesRecursif(Case[] extremites, int rangee, int direction, int compteur) {
+    private void deplacerCasesRecursif(Case[] extremites, int rangee, int direction, int compteur, boolean inter) {
         if (extremites[rangee] != null) {
             if ((direction == HAUT && extremites[rangee].getY() != compteur)
                     || (direction == BAS && extremites[rangee].getY() != TAILLE - 1 - compteur)
@@ -173,14 +195,14 @@ public class Grille implements Parametres {
             if (voisin != null) {
                 if (extremites[rangee].valeurAdjacente(voisin,fibo)) {
                 	//System.out.println("bonjour");
-                    this.fusion(extremites[rangee],voisin);
+                    this.fusion(extremites[rangee],voisin,inter);
                     extremites[rangee] = voisin.getVoisinDirect(-direction);
                     this.grille.remove(voisin);
-                    this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1);
+                    this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1, inter);
                 } else {
                 	//System.out.println("aurevoir");
                     extremites[rangee] = voisin;
-                    this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1);
+                    this.deplacerCasesRecursif(extremites, rangee, direction, compteur + 1, inter);
                 }
             }
         }

@@ -5,10 +5,19 @@ import java.util.Scanner;
 public class Humain extends Joueur implements Parametres{
 	
 	private Scanner sc;
+	protected int cptUndo;
+	protected boolean undo;
 
 	/**
 	 @override
 	 */
+	
+	public Humain() {
+		super();
+		cptUndo=5;
+		undo=false;
+	}
+	
 	public int saisieDplcmt(int joueur){
 		
 		sc = new Scanner(System.in);
@@ -70,7 +79,7 @@ public class Humain extends Joueur implements Parametres{
 		        }
 			}
 			
-			test = this.grille.lanceurDeplacerCases(direction);
+			test = this.grille.lanceurDeplacerCases(direction, true);
 			
 			if(!test){
 				System.out.println("Déplacement impossible, veuillez réessayer");
