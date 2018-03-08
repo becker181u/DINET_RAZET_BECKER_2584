@@ -138,6 +138,7 @@ public class Grille implements Parametres {
 	    		//System.out.println(valeur);
 	    	}
 	        extremite.setValeur(valeur);
+	        
 	        if (this.valeurMax < extremite.getValeur()) {
 	            this.valeurMax = extremite.getValeur();
 	        }
