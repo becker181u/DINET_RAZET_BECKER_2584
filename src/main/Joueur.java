@@ -9,7 +9,6 @@ public abstract class Joueur {
 		this.grille = new Grille();
         boolean b = grille.nouvelleCase();
         b = grille.nouvelleCase();
-		
 	}
 	
 	public int saisieDplcmt(int joueur){

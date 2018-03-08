@@ -3,11 +3,10 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.sun.glass.events.MouseEvent;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 
 public class MainViewController implements Initializable {
 	
