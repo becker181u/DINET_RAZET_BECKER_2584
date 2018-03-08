@@ -21,10 +21,11 @@ public class Grille implements Parametres {
     private int valeurMax = 0;
     private boolean deplacement;
     protected ArrayList<Integer> fibo;
+    private Joueur player;
 
-    public Grille() {
+    public Grille(Joueur joueur) {
         this.grille = new HashSet<>();
-
+        this.player=joueur;
         this.fibo = new ArrayList<>();
         for(int i=0; i<19; i++) {
         	this.fibo.add(Fibonacci.fibonacci(i+1));
@@ -42,6 +43,7 @@ public class Grille implements Parametres {
         for (int i = 0; i < tableau.length; i++) {
             result += Arrays.toString(tableau[i]) + "\n";
         }
+        result+="Score : "+player.getScore();
         return result;
     }
     
@@ -123,13 +125,25 @@ public class Grille implements Parametres {
     	}
     	return fibo.get(i+1);
     }
+    
+    private void changerScore(int valeur) {
+    		int score = valeur + player.getScore();
+	        player.setScore(score);
+    }
 
     private void fusion(Case extremite,Case voisin) {
     	//System.out.println("fusion");
     	//System.out.println("extremite : "+extremite.getValeur() + "voisin"+ voisin.getValeur());
-    	if(extremite.getValeur()==1&&voisin.getValeur()==1)extremite.setValeur(2);
+    	int valeur;
+    	if(extremite.getValeur()==1&&voisin.getValeur()==1) {
+    		valeur = 2;
+    		extremite.setValeur(valeur);
+    		changerScore(valeur);
+
+    		
+    	}
     	else {
-	    	int valeur=0;
+	    	valeur=0;
 	    	if(extremite.getValeur()>voisin.getValeur()) {
 	    		valeur=trouverLeSuivant(extremite);
 	    		//System.out.println("valeur"+valeur);
@@ -138,6 +152,7 @@ public class Grille implements Parametres {
 	    		//System.out.println(valeur);
 	    	}
 	        extremite.setValeur(valeur);
+	        changerScore(valeur);
 	        
 	        if (this.valeurMax < extremite.getValeur()) {
 	            this.valeurMax = extremite.getValeur();
