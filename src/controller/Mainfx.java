@@ -22,9 +22,7 @@ public class Mainfx extends Application {
 		initRootLayout();
 		
 		showMainView();
-		
-		
-	}
+		}
 
 	public static void main(String[] args) {
 		launch(args);

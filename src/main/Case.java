@@ -75,7 +75,6 @@ public class Case implements Parametres {
     		valeurinf=fibo.indexOf(c.getValeur());
     		valeursup=fibo.indexOf(this.valeur);    		
     	}
-    	System.out.println("valeurinf : " + valeurinf + "valeursup : " + valeursup);
     	if(valeurinf==valeursup-1 || (valeurinf==0&&valeursup==0) || (valeurinf==0&&valeursup==2)) {
     		return true;
     	}else {
