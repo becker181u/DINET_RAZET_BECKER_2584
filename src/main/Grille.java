@@ -237,7 +237,6 @@ public class Grille implements Parametres {
             int valeur;
             if(ra.nextDouble()<0.75) valeur = 1; else valeur = 2; 
             // on cr�e toutes les cases encore libres
-
             for (int x = 0; x < TAILLE; x++) {
                 for (int y = 0; y < TAILLE; y++) {
                     Case c = new Case(x, y, valeur);
