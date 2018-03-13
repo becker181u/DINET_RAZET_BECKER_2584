@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class MainViewController implements Initializable {
@@ -39,6 +40,26 @@ public class MainViewController implements Initializable {
 	@FXML
 	private void reset_partie(MouseEvent event) {
 		System.out.println("reset_partie");
+	}
+	
+	private void bougerCases(KeyEvent event) {
+		switch (event.getCharacter()) {
+		case "z":
+			
+			break;
+		case "d":
+			
+			break;
+		case "q":
+			
+			break;
+		case "s":
+			
+			break;
+
+		default:
+			break;
+		}
 	}
 	
 	/**
