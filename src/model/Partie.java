@@ -8,9 +8,16 @@ public class Partie implements Parametres{
 	public Joueur joueur1, joueur2;
 	private Scanner sc;
 	
+	//constructeur pour pas d'interface
 	public Partie() {
 		this.joueur1 = saisieJoueur(1);
 		this.joueur2 = saisieJoueur(2);	
+	}
+	
+	//constructeur pour une interface
+	public Partie(boolean javafx){
+		this.joueur1 = new Humain();
+		this.joueur2 = new Humain();
 	}
 	
 	
@@ -45,6 +52,26 @@ public class Partie implements Parametres{
 		}
 		
 		return joueur;
+	}
+	
+	public void choixJoueur(int numero, int choix) {
+		Joueur joueur;
+		switch(choix) {
+			case 1 :
+				joueur = new Humain();
+				break;
+			case 2 :
+				joueur = new Ordinateur();
+				break;
+			case 3 : 
+				joueur = new IA();
+				break;
+			default :
+				System.out.println("default");
+				joueur = new Humain();
+				break;
+		}
+		if(numero == 1)this.joueur1 = joueur;else this.joueur2 = joueur;
 	}
 	
 	
