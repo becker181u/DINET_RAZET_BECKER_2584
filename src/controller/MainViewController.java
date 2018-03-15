@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import model.Partie;
 
 public class MainViewController implements Initializable {
 	
@@ -18,6 +19,8 @@ public class MainViewController implements Initializable {
 	private Button button_annuler_un, button_annuler_deux, button_start, button_reset;
 	
 	private Mainfx mainApp;
+	
+	private Partie partie;
 	
 	public MainViewController() {}
 	

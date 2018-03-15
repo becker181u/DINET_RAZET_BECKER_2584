@@ -1,5 +1,7 @@
 package main;
 
+import model.Parametres;
+import model.Partie;
 
 public class Main implements Parametres{
 
