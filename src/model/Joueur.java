@@ -24,6 +24,16 @@ public abstract class Joueur {
 	public void setScore(int score) {
 		this.score = score;
 	}
+
+	public int getScoreSec() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void setScoreSec(int score2) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	

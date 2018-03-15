@@ -130,6 +130,11 @@ public class Grille implements Parametres {
     		int score = valeur + player.getScore();
 	        player.setScore(score);
     }
+    
+    private void changerScoreSec(int valeur){
+    	int score = valeur + player.getScoreSec();
+    	player.setScoreSec(score);
+    }
 
     private void fusion(Case extremite,Case voisin, boolean inter) {
     	//System.out.println("fusion");
@@ -140,6 +145,8 @@ public class Grille implements Parametres {
     		extremite.setValeur(valeur);
     		if(inter){
     			changerScore(valeur);
+    		}else{
+    			changerScoreSec(valeur);
     		}
     		
 
@@ -157,6 +164,8 @@ public class Grille implements Parametres {
 	        extremite.setValeur(valeur);
 	        if(inter){
 	        	changerScore(valeur);
+	        }else{
+	        	changerScoreSec(valeur);
 	        }
 	        
 	        
