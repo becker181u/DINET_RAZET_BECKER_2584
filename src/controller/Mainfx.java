@@ -54,14 +54,22 @@ public class Mainfx extends Application {
         try {
             // Load mainView.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Mainfx.class.getResource("../view/mainView.fxml"));
-            AnchorPane mainView = (AnchorPane) loader.load();
+            
+            
+            //loader.setLocation(Mainfx.class.getResource("../view/mainView.fxml"));
+            //AnchorPane mainView = (AnchorPane) loader.load();
 
             // Set mainView into the center of root layout.
-            rootLayout.setCenter(mainView);
+            //rootLayout.setCenter(mainView);
             
          // Give the controller access to the main app.
-            MainViewController controller = loader.getController();
+            
+            
+            
+            loader.setLocation(Mainfx.class.getResource("../view/menuJoueurUnView.fxml"));
+            AnchorPane menuJoueurUnView = (AnchorPane) loader.load();
+            rootLayout.setCenter(menuJoueurUnView);
+            MenuViewController controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();

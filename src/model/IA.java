@@ -29,25 +29,27 @@ public class IA extends Joueur implements Parametres{
 		
 		for(direction = -2;direction<3;direction++){
 			
-			Grille grilleSec = grille;
-			int scoreSec = score;
+			this.grilleSec = this.grille;
+			this.scoreSec = this.score;
 			
-			System.out.println("grille sec"+grilleSec + "\n grille générale"+grille);
+			System.out.println("grille sec"+this.grilleSec + "\n grille générale"+this.grille);
 		
 			if(direction != 0){
 				
-				test = grilleSec.lanceurDeplacerCases(direction, false);
+				test = this.grilleSec.lanceurDeplacerCases(direction, false);
 				
 				
 				
 				if(scoreMin>scoreSec && test){
-					scoreMin = scoreSec;
+					scoreMin = this.scoreSec;
 					dirChoisi = direction;
 				}
 			}
+			System.out.println("cacahuete");
 		}
+		System.out.println("vin de dieux");
 		
-		grille.lanceurDeplacerCases(dirChoisi, true);
+		this.grille.lanceurDeplacerCases(dirChoisi, true);
 		
 		return direction;
 	}

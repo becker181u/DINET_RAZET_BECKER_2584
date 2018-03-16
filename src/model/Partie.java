@@ -20,7 +20,7 @@ public class Partie implements Parametres{
 		this.joueur2 = new Humain();
 	}
 	
-	
+	//methode utiliser pour jouer sans interface
 	private Joueur saisieJoueur(int x){
 		Joueur joueur;
 		sc = new Scanner(System.in);
@@ -54,6 +54,7 @@ public class Partie implements Parametres{
 		return joueur;
 	}
 	
+	//methode utiliser pour l'interface
 	public void choixJoueur(int numero, int choix) {
 		Joueur joueur;
 		switch(choix) {

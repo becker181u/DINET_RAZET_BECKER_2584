@@ -15,17 +15,19 @@ public class MenuViewController implements Initializable {
 	
 	private Partie partie;
 
+	private Mainfx mainApp;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 	}
 	
 	public MenuViewController(){
-		
+		this.partie = new Partie(true);
 	}
 	
 	public MenuViewController(Partie partie) {
-		partie = new Partie(true);
+		this.partie = partie;
 	}
 	
 	@FXML
@@ -49,5 +51,11 @@ public class MenuViewController implements Initializable {
 	private void choisirSecondJoueur() {
 		new MenuViewController(partie);
 	}
+
+	public void setMainApp(Mainfx mainApp) {
+        this.mainApp = mainApp;
+        // Add observable list data to the table
+        //personTable.setItems(mainApp.getPersonData());
+    }
 
 }
