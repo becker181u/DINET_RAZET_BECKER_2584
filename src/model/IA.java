@@ -32,6 +32,8 @@ public class IA extends Joueur implements Parametres{
 				if(scoreSec<scoreMin && test){
 					scoreMin = this.scoreSec;
 					dirFinal = direction;
+
+		
 				}
 			}
 		}

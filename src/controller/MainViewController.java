@@ -22,7 +22,9 @@ public class MainViewController implements Initializable {
 	
 	private Partie partie;
 	
-	public MainViewController() {}
+	public MainViewController(Partie partie) {
+		this.partie = partie;
+	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -45,6 +47,7 @@ public class MainViewController implements Initializable {
 		System.out.println("reset_partie");
 	}
 	
+	@FXML
 	private void bougerCases(KeyEvent event) {
 		switch (event.getCharacter()) {
 		case "z":
