@@ -3,10 +3,11 @@ package model;
 public class IA extends Joueur implements Parametres{
 	
 	private int scoreSec;
-	private Grille grilleSec;
+
 
 	public IA(){
 		super();
+
 	}
 	
 	public int getScoreSec(){
@@ -19,37 +20,22 @@ public class IA extends Joueur implements Parametres{
 	
 	
 	public int saisieDplcmt(int joueur){
-		
-		
-		
-		int direction = -2;
-		int scoreMin = 1000000000;
-		int dirChoisi = 0;
 		boolean test;
+		int direction;
+		int scoreMin = 100000000;
+		int dirFinal = 0;
 		
-		for(direction = -2;direction<3;direction++){
-			
-			Grille grilleSec = grille;
-			int scoreSec = score;
-			
-			System.out.println("grille sec"+grilleSec + "\n grille générale"+grille);
-		
+		for (direction=-2;direction<3;direction++){
 			if(direction != 0){
 				
-				test = grilleSec.lanceurDeplacerCases(direction, false);
-				
-				
-				
-				if(scoreMin>scoreSec && test){
-					scoreMin = scoreSec;
-					dirChoisi = direction;
+				test = this.grille.lanceurDeplacerCasesIa(direction);
+				if(scoreSec<scoreMin && test){
+					scoreMin = this.scoreSec;
+					dirFinal = direction;
 				}
 			}
 		}
-		
-		grille.lanceurDeplacerCases(dirChoisi, true);
-		
+		this.grille.lanceurDeplacerCases(dirFinal);
 		return direction;
 	}
-	
 }

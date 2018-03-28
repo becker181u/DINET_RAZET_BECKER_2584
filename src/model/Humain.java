@@ -79,7 +79,7 @@ public class Humain extends Joueur implements Parametres{
 		        }
 			}
 			
-			test = this.grille.lanceurDeplacerCases(direction, true);
+			test = this.grille.lanceurDeplacerCases(direction);
 			
 			if(!test){
 				System.out.println("Déplacement impossible, veuillez réessayer");

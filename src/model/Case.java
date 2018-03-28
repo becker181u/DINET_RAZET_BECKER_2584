@@ -51,7 +51,7 @@ public class Case implements Parametres {
     }
 
     @Override
-    public boolean equals(Object obj) { // la méthode equals est utilisée lors de l'ajout d'une case à un ensemble pour vérifier qu'il n'y a pas de doublons (teste parmi tous les candidats qui ont le même hashcode)
+    public boolean equals(Object obj) { // la mï¿½thode equals est utilisï¿½e lors de l'ajout d'une case ï¿½ un ensemble pour vï¿½rifier qu'il n'y a pas de doublons (teste parmi tous les candidats qui ont le mï¿½me hashcode)
         if (obj instanceof Case) {
             Case c = (Case) obj;
             return (this.x == c.x && this.y == c.y);
@@ -61,7 +61,7 @@ public class Case implements Parametres {
     }
 
     @Override
-    public int hashCode() { // détermine le hashcode
+    public int hashCode() { // dï¿½termine le hashcode
         return this.x * 7 + this.y * 13;
     }
     
@@ -110,6 +110,43 @@ public class Case implements Parametres {
         } else if (direction == DROITE) {
             for (int i = this.x + 1; i < TAILLE; i++) {
                 for (Case c : grille.getGrille()) {
+                    if (c.getX() == i && c.getY() == this.y) {
+                        return c;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+    
+    public Case getVoisinDirectIa(int direction) {
+        if (direction == HAUT) {
+            for (int i = this.y - 1; i >= 0; i--) {
+                for (Case c : grille.getGrilleIa()) {
+                    if (c.getX() == this.x && c.getY() == i) {
+                        return c;
+                    }
+                }
+            }
+        } else if (direction == BAS) {
+            for (int i = this.y + 1; i < TAILLE; i++) {
+                for (Case c : grille.getGrilleIa()) {
+                    if (c.getX() == this.x && c.getY() == i) {
+                        return c;
+                    }
+                }
+            }
+        } else if (direction == GAUCHE) {
+            for (int i = this.x - 1; i >= 0; i--) {
+                for (Case c : grille.getGrilleIa()) {
+                    if (c.getX() == i && c.getY() == this.y) {
+                        return c;
+                    }
+                }
+            }
+        } else if (direction == DROITE) {
+            for (int i = this.x + 1; i < TAILLE; i++) {
+                for (Case c : grille.getGrilleIa()) {
                     if (c.getX() == i && c.getY() == this.y) {
                         return c;
                     }
