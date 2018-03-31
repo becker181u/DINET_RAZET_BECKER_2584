@@ -142,10 +142,16 @@ public class Grille implements Parametres {
     }
     public boolean lanceurDeplacerCasesIa(int direction) {
     	
-    	System.out.println(grille);
+
     	this.grilleIa.clear();
-    	this.grilleIa.addAll(this.grille);
-    	System.out.println(grilleIa);
+
+    	
+    	for(Case c : grille){
+    		Case c2 = this.cloneCase(c);
+    		c2.setGrille(this);
+    		this.grilleIa.add(c2);
+    	}
+
     	
         Case[] extremites = this.getCasesExtremitesIA(direction);
         deplacement = false; // pour v�rifier si on a boug� au moins une case apr�s le d�placement, avant d'en rajouter une nouvelle
@@ -167,7 +173,14 @@ public class Grille implements Parametres {
         }
         return deplacement;
     }
-
+ 
+    private Case cloneCase(Case caseBase){
+    	
+    	Case caseCloned = new Case(caseBase.getX(),caseBase.getY(),caseBase.getValeur());
+    	
+    	return caseCloned;
+    }
+    
     private int trouverLeSuivant(Case c) {
     	boolean trouve= true; 
     	int grand= 0;

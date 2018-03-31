@@ -161,4 +161,10 @@ public class Case implements Parametres {
         return "Case(" + this.x + "," + this.y + "," + this.valeur + ")";
     }
 
+    @Override
+    public Case clone(){
+    	
+		return null;
+    	
+    }
 }

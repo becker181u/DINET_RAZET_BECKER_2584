@@ -95,9 +95,11 @@ public class Partie implements Parametres{
 
 	
     public void gameOver() {
+    	System.out.println(joueur1.grille);
+		System.out.println(joueur2.grille);
     	System.out.println("La partie est finie");
-    	System.out.println("Le score du joueur 1 est " + this.joueur1.grille.getValeurMax());
-    	System.out.println("Le score du joueur 2 est " + this.joueur1.grille.getValeurMax());
+    	System.out.println("Le score du joueur 1 est " + this.joueur1.getScore());
+    	System.out.println("Le score du joueur 2 est " + this.joueur2.getScore());
         System.exit(1);
     }
 	
