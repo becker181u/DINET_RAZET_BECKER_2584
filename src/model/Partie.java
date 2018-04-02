@@ -98,6 +98,16 @@ public class Partie implements Parametres{
     	System.out.println(joueur1.grille);
 		System.out.println(joueur2.grille);
     	System.out.println("La partie est finie");
+    	
+    	if(joueur1.grille.partieFinie()){
+    		System.out.println("Joueur 1 a perdu !");
+    	}else if(joueur2.grille.partieFinie()){
+    		System.out.println("Joueur 2 a perdu !");
+    	}else if (joueur1.grille.partieFinie() && joueur2.grille.partieFinie()){
+    		System.out.println("égalité !");
+    	}
+    	
+    	
     	System.out.println("Le score du joueur 1 est " + this.joueur1.getScore());
     	System.out.println("Le score du joueur 2 est " + this.joueur2.getScore());
         System.exit(1);
