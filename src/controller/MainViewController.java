@@ -8,9 +8,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import model.Parametres;
 import model.Partie;
 
-public class MainViewController implements Initializable {
+public class MainViewController implements Initializable, Parametres {
 	
 	@FXML
 	private Label score_un, score_deux;
@@ -18,11 +21,15 @@ public class MainViewController implements Initializable {
 	@FXML
 	private Button button_annuler_un, button_annuler_deux, button_start, button_reset;
 	
+	@FXML
+	private GridPane grilleJoueur1, grilleJoueur2;
+	
 	private Mainfx mainApp;
 	
 	private Partie partie;
 	
 	public MainViewController(Partie partie) {
+		
 		this.partie = partie;
 	}
 	
@@ -51,21 +58,33 @@ public class MainViewController implements Initializable {
 	private void bougerCases(KeyEvent event) {
 		switch (event.getCharacter()) {
 		case "z":
-			
+			partie.joueur1.grille.lanceurDeplacerCases(HAUT);
 			break;
 		case "d":
-			
+			partie.joueur1.grille.lanceurDeplacerCases(DROITE);
 			break;
 		case "q":
-			
+			partie.joueur1.grille.lanceurDeplacerCases(GAUCHE);
 			break;
 		case "s":
-			
+			partie.joueur1.grille.lanceurDeplacerCases(BAS);
 			break;
-
+		case "i":
+			partie.joueur2.grille.lanceurDeplacerCases(HAUT);
+			break;
+		case "l":
+			partie.joueur2.grille.lanceurDeplacerCases(DROITE);
+			break;
+		case "j":
+			partie.joueur2.grille.lanceurDeplacerCases(GAUCHE);
+			break;
+		case "k":
+			partie.joueur2.grille.lanceurDeplacerCases(BAS);
+			break;
 		default:
 			break;
 		}
+		
 	}
 	
 	/**

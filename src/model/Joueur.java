@@ -2,9 +2,9 @@ package model;
 
 public abstract class Joueur {
 
-	protected Grille grille;
+	public Grille grille;
 	
-	protected int score;
+	private int score;
 	
 	public Joueur() {
 		this.grille = new Grille(this);
