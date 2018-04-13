@@ -77,8 +77,9 @@ public class Partie implements Parametres{
 				break;
 			case 2 :
 				joueur = new Ordinateur();
+				joueur.saisieDplcmt(2);
 				break;
-			case 3 : 
+			case 3 :
 				joueur = new IA();
 				break;
 			default :

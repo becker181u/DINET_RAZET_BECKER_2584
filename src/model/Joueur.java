@@ -22,7 +22,7 @@ public abstract class Joueur {
 	public void annulerCoup() {
 		
 	}
-	
+
 	/**
 	 * méthode jamais appelée pour la saisie du déplacement
 	 * @param joueur numéro du joueur, 1 ou 2
@@ -31,6 +31,7 @@ public abstract class Joueur {
 	public int saisieDplcmt(int joueur){
 		return 0;
 	}
+
 
 	/**
 	 * get score
