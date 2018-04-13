@@ -8,19 +8,28 @@ public class Partie implements Parametres{
 	public Joueur joueur1, joueur2;
 	private Scanner sc;
 	
-	//constructeur pour pas d'interface
+	/**
+	 * constructeur sans interface
+	 */
 	public Partie() {
 		this.joueur1 = saisieJoueur(1);
 		this.joueur2 = saisieJoueur(2);	
 	}
 	
-	//constructeur pour une interface
+	/**
+	 * constructeur avec interface
+	 * @param javafx si interface ou non
+	 */
 	public Partie(boolean javafx){
 		this.joueur1 = new Humain();
 		this.joueur2 = new Humain();
 	}
 	
-	//methode utiliser pour jouer sans interface
+	/**
+	 * methode utiliser pour sélectionner les joueurs sans interface
+	 * @param x joueur 1 ou 2
+	 * @return le joueur créé
+	 */
 	private Joueur saisieJoueur(int x){
 		Joueur joueur;
 		sc = new Scanner(System.in);
@@ -55,6 +64,11 @@ public class Partie implements Parametres{
 	}
 	
 	//methode utiliser pour l'interface
+	/**
+	 * methode utiliser pour sélectionner les joueurs avec l'interface
+	 * @param numero du joueur
+	 * @param choix (humain, ordinateur IA)
+	 */
 	public void choixJoueur(int numero, int choix) {
 		Joueur joueur;
 		switch(choix) {
@@ -75,7 +89,9 @@ public class Partie implements Parametres{
 		if(numero == 1)this.joueur1 = joueur;else this.joueur2 = joueur;
 	}
 	
-	
+	/**
+	 * méthode de déroulement de la partie, avec affichage des grilles, choix des directions, création des nouvelles casses sur les grilles
+	 */
 	public void dplcmt(){
 		
 		while(!joueur1.grille.partieFinie() && !joueur2.grille.partieFinie()){
@@ -93,7 +109,9 @@ public class Partie implements Parametres{
 		gameOver(); 
 	}
 
-	
+	/**
+	 * méthode testant si la partie est finie ou non
+	 */
     public void gameOver() {
     	System.out.println(joueur1.grille);
 		System.out.println(joueur2.grille);

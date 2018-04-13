@@ -4,6 +4,11 @@ import java.util.Random;
 
 public class Ordinateur extends Joueur implements Parametres{
 	
+	/**
+	 * méthode de saisie du déplacement pour l'ordinateur
+	 * @param joueur pour le numéro du joueur concerné
+	 * @return la direction choisie (au hasard ici)
+	 */
 	public int saisieDplcmt(int joueur){
 		
 		Random ra = new Random();

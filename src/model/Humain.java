@@ -10,19 +10,25 @@ public class Humain extends Joueur implements Parametres{
 	protected boolean undo;
 
 	/**
-	 @override
-	 */
-	
+	 * override du constructeur Joueur
+	 */	
 	public Humain() {
 		super();
 		cptUndo=5;
 		undo=false;
 	}
 	
+	/**
+	 * set Undo
+	 * @param b Undo
+	 */
 	public void setUndo(boolean b) {
 		this.undo=b;
 	}
 	
+	/**
+	 * méthode d'annulation de déplacement
+	 */
 	public void annulerDeplacement() {
 		HashSet<Case> prec = this.grille.getGrillePrec();
 		int score=this.grille.getScorePrec();
@@ -37,6 +43,11 @@ public class Humain extends Joueur implements Parametres{
 		
 	}
 	
+	/**
+	 * méthode de saisie du déplacement en console
+	 * @return la direction choisie par le joueur
+	 * @param joueur le numéro du joueur, pour les saisies clavier
+	 */
 	public int saisieDplcmt(int joueur){
 		
 		sc = new Scanner(System.in);

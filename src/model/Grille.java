@@ -11,8 +11,9 @@ import java.util.HashSet;
 import java.util.Random;
 
 /**
+ * 
+ * @author guilherme
  *
- * @author Sylvain
  */
 public class Grille implements Parametres {
 
@@ -25,6 +26,10 @@ public class Grille implements Parametres {
     protected ArrayList<Integer> fibo;
     private Joueur player;
 
+    /**
+     * constructeur de la classe grille
+     * @param joueur permet de spécifier de la grille de quelle joueur on parle
+     */
     public Grille(Joueur joueur) {
         this.grille = new HashSet<>();
         this.grilleIa = new HashSet<>();
@@ -36,6 +41,9 @@ public class Grille implements Parametres {
 
     }
 
+    /**
+     * override de la méthode tostring
+     */
     @Override
     public String toString() {
         int[][] tableau = new int[TAILLE][TAILLE];
@@ -50,6 +58,10 @@ public class Grille implements Parametres {
         return result;
     }
     
+    /**
+     * méthode permettant de renvoyer un affichage compatible HTML
+     * @return une string compatible avec HTML
+     */
     public String toHTML() {
         int[][] tableau = new int[TAILLE][TAILLE];
         for (Case c : this.grille) {
@@ -63,18 +75,34 @@ public class Grille implements Parametres {
         return result;
     }
 
+    /**
+     * get Grille
+     * @return la grille courante, le HashSet
+     */
     public HashSet<Case> getGrille() {
         return grille;
     }
     
+    /**
+     * get grilleIA, renvoie la grille utilisée pour les simulations IA
+     * @return la grille IA
+     */
     public HashSet<Case> getGrilleIa(){
     	return grilleIa;
     }
     
+    /**
+     * get grillePrec, renvoie la grille tel qu'elle l'est au tour précédent
+     * @return grillePrec
+     */
     public HashSet<Case> getGrillePrec(){
     	return grillePrec;
     }
     
+    /**
+     * set grille
+     * @param grille
+     */
     public void setGrille(HashSet<Case> grille){
     	
 		this.grille.clear();
@@ -83,14 +111,26 @@ public class Grille implements Parametres {
 		}
     }
     
+    /**
+     * renvoie le score du tour précédent
+     * @return scorePrec
+     */
     public int getScorePrec() {
     	return this.scorePrec;
     }
 
+    /**
+     * renvoie la valeur max de la grille
+     * @return valeur max
+     */
     public int getValeurMax() {
         return valeurMax;
     }
 
+    /**
+     * Permet de détecter si une partie est finie, si il reste de la place sur la grille ou si la plus haute valeur est 2584
+     * @return boolean de partie finie
+     */
     public boolean partieFinie() {
     	
         if (this.grille.size() < TAILLE * TAILLE) {
@@ -109,6 +149,10 @@ public class Grille implements Parametres {
         return true;
     }
     
+    /**
+     * Permet de détecter si une partie est finie en se basant sur la grille IA
+     * @return boolean de partie finie pour l'ia
+     */
     public boolean partieFinieIa() {
     	
         if (this.grilleIa.size() < TAILLE * TAILLE) {
@@ -127,6 +171,11 @@ public class Grille implements Parametres {
         return true;
     }
 
+    /**
+     * fonction récursive pour le déplacement des cases, en fonction de la direction spécifiée
+     * @param direction choisie par le joueur
+     * @return boolean indiquant si un déplacement à eu lieu ou non
+     */
     public boolean lanceurDeplacerCases(int direction) {
     	grillePrec=(HashSet<Case>) grille.clone();
     	this.scorePrec=this.player.getScore();
@@ -154,6 +203,11 @@ public class Grille implements Parametres {
         return deplacement;
     }
     
+    /**
+     * exactement même méthode que celle au dessus, sauf qu'elle s'applique à la grille IA
+     * @param direction choisie par l'ia 
+     * @return un boolean pour indiquer à l'ia si un mouvement aurait eu lieu  
+     */
     public boolean lanceurDeplacerCasesIa(int direction) {
     	
 
@@ -189,6 +243,11 @@ public class Grille implements Parametres {
         return deplacement;
     }
  
+    /**
+     * clone la case, permettant de recréer la grilleIA a partir de la grille courante
+     * @param caseBase case à cloner
+     * @return case clonée
+     */
     private Case cloneCase(Case caseBase){
     	
     	Case caseCloned = new Case(caseBase.getX(),caseBase.getY(),caseBase.getValeur());
@@ -196,6 +255,11 @@ public class Grille implements Parametres {
     	return caseCloned;
     }
     
+    /**
+     * retourne la valeur suivante dans la suite de fibonacci
+     * @param c case à vérifier
+     * @return le nombre suivant dans la suite de fibonacci
+     */
     private int trouverLeSuivant(Case c) {
     	boolean trouve= true; 
     	int grand= 0;
@@ -214,16 +278,29 @@ public class Grille implements Parametres {
     	return fibo.get(i+1);
     }
     
+    /**
+     * change le score en fonction de la valeur passée en paramètres
+     * @param valeur à incrémenter pour le score
+     */
     private void changerScore(int valeur) {
     		int score = valeur + player.getScore();
 	        player.setScore(score);
     }
     
+    /**
+     * change le score secondaire, pris en compte par l'ia dans le choix du coup
+     * @param valeur acquise après le test des coups par l'ia, à ajouter au score secondaire
+     */
     private void changerScoreSec(int valeur){
     	int score = valeur + player.getScoreSec();
     	player.setScoreSec(score);
     }
 
+    /**
+     * méthode fusionnant les cases adjacentes si elles sont compatibles
+     * @param extremite case à l'extremité
+     * @param voisin case arrivant sur la case d'extrémité
+     */
     private void fusion(Case extremite,Case voisin) {
     	//System.out.println("fusion");
     	//System.out.println("extremite : "+extremite.getValeur() + "voisin"+ voisin.getValeur());
@@ -256,6 +333,11 @@ public class Grille implements Parametres {
         deplacement = true;
     }
     
+    /**
+     * méthode clone de la précédente, sauf qu'elle s'applique de la grilleIA
+     * @param extremite case à l'extremité
+     * @param voisin case arrivant sur la case d'extrémité
+     */
     private void fusionIa(Case extremite,Case voisin) {
     	//System.out.println("fusion");
     	//System.out.println("extremite : "+extremite.getValeur() + "voisin"+ voisin.getValeur());
@@ -284,6 +366,13 @@ public class Grille implements Parametres {
         deplacement = true;
     }
 
+    /**
+     * fonction de déplacement des cases, appelée de manière récursive
+     * @param extremites tableau des cases d'extremité
+     * @param rangee sélecteur de la rangée
+     * @param direction choisie par le joueur
+     * @param compteur de déplacement par rangée
+     */
     private void deplacerCasesRecursif(Case[] extremites, int rangee, int direction, int compteur) {
         if (extremites[rangee] != null) {
             if ((direction == HAUT && extremites[rangee].getY() != compteur)
@@ -325,6 +414,13 @@ public class Grille implements Parametres {
         }
     }
 
+    /**
+     * méthode identique à la précédente, mais s'applique sur la grille IA
+     * @param extremites tableau des cases d'extremité
+     * @param rangee sélecteur de la rangée
+     * @param direction choisie par le joueur
+     * @param compteur de déplacement par rangée
+     */
     private void deplacerCasesRecursifIa(Case[] extremites, int rangee, int direction, int compteur) {
         if (extremites[rangee] != null) {
             if ((direction == HAUT && extremites[rangee].getY() != compteur)
@@ -366,12 +462,14 @@ public class Grille implements Parametres {
         }
     }
     
-    /*
-    * Si direction = HAUT : retourne les 4 cases qui sont le plus en haut (une pour chaque colonne)
-    * Si direction = DROITE : retourne les 4 cases qui sont le plus � droite (une pour chaque ligne)
-    * Si direction = BAS : retourne les 4 cases qui sont le plus en bas (une pour chaque colonne)
-    * Si direction = GAUCHE : retourne les 4 cases qui sont le plus � gauche (une pour chaque ligne)
-    * Attention : le tableau retourn� peut contenir des null si les lignes/colonnes sont vides
+    /**
+     * Si direction = HAUT : retourne les 4 cases qui sont le plus en haut (une pour chaque colonne)
+     * Si direction = DROITE : retourne les 4 cases qui sont le plus � droite (une pour chaque ligne)
+     * Si direction = BAS : retourne les 4 cases qui sont le plus en bas (une pour chaque colonne)
+     * Si direction = GAUCHE : retourne les 4 cases qui sont le plus � gauche (une pour chaque ligne)
+     * Attention : le tableau retourn� peut contenir des null si les lignes/colonnes sont vides
+     * @param direction choisie par le joueur
+     * @return le tableau de cases à l'extrémité en fonction de la direction choisie
      */
     public Case[] getCasesExtremites(int direction) {
         Case[] result = new Case[TAILLE];
@@ -403,6 +501,11 @@ public class Grille implements Parametres {
     }
     
     
+    /**
+     * méthode clonée de la précédente, appliquée à la grille IA
+     * @param direction choisie par le joueur
+     * @return le tableau de cases à l'extrémité en fonction de la direction choisie
+     */
     public Case[] getCasesExtremitesIA(int direction) {
         Case[] result = new Case[TAILLE];
         for (Case c : this.grilleIa) {
@@ -432,6 +535,10 @@ public class Grille implements Parametres {
         return result;
     }
 
+    /**
+     * méthode de fin de partie
+     * @deprecated
+     */
     public void victory() {
         System.out.println("Bravo ! Vous avez atteint " + this.valeurMax);
         System.exit(0);
@@ -439,6 +546,10 @@ public class Grille implements Parametres {
 
 
 
+    /**
+     * crée une nouvelle case à une position libre aléatoire de la grille
+     * @return un boolean pour montrer l'existence de la nouvelle case ou non
+     */
     public boolean nouvelleCase() {
         if (this.grille.size() < TAILLE * TAILLE) {
             ArrayList<Case> casesLibres = new ArrayList<>();
@@ -469,6 +580,10 @@ public class Grille implements Parametres {
         }
     }
     
+    /**
+     * crée une nouvelle case à une position libre aléatoire de la grille
+     * @return un boolean pour montrer l'existence de la nouvelle case ou non
+     */
     public boolean nouvelleCaseIA() {
         if (this.grilleIa.size() < TAILLE * TAILLE) {
             ArrayList<Case> casesLibres = new ArrayList<>();

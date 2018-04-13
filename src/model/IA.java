@@ -9,20 +9,36 @@ public class IA extends Joueur implements Parametres{
 	private boolean GouD = false;
 
 
+	/**
+	 * constructeur de la classe IA
+	 */
 	public IA(){
 		super();
 
 	}
 	
+	/**
+	 * get le score secondaire, pour l'ia
+	 * @return scoreSec
+	 */
 	public int getScoreSec(){
 		return this.scoreSec;
 	}
 	
+	/**
+	 * Set le score secondaire
+	 * @param score 2 int scoreSecondaire
+	 */
 	public void setScoreSec(int score2){
 		this.scoreSec = score2;
 	}
 	
 	
+	/**
+	 * méthode de saisie de déplacement
+	 * @param joueur numéro du joueur
+	 * @return la direction choisie
+	 */
 	public int saisieDplcmt(int joueur){
 		boolean test, test2;
 		boolean boucle = false;
@@ -78,7 +94,9 @@ public class IA extends Joueur implements Parametres{
 
 		
 		
-		
+/**
+ * Première IA implémentée, deprecated
+ */
 		
 		
 		/**for (direction=-2;direction<3;direction++){
