@@ -18,7 +18,9 @@ public class Grille implements Parametres {
 
     private HashSet<Case> grille;
     private HashSet<Case> grilleIa;
+    private HashSet<Case> grillePrec;
     private int valeurMax = 0;
+    private int scorePrec;
     private boolean deplacement;
     protected ArrayList<Integer> fibo;
     private Joueur player;
@@ -69,6 +71,10 @@ public class Grille implements Parametres {
     	return grilleIa;
     }
     
+    public HashSet<Case> getGrillePrec(){
+    	return grillePrec;
+    }
+    
     public void setGrille(HashSet<Case> grille){
     	
 		this.grille.clear();
@@ -77,6 +83,10 @@ public class Grille implements Parametres {
 		}
 		
 
+    }
+    
+    public int getScorePrec() {
+    	return this.scorePrec;
     }
 
     public int getValeurMax() {
@@ -120,6 +130,8 @@ public class Grille implements Parametres {
     }
 
     public boolean lanceurDeplacerCases(int direction) {
+    	grillePrec=(HashSet<Case>) grille.clone();
+    	this.scorePrec=this.player.getScore();
         Case[] extremites = this.getCasesExtremites(direction);
         deplacement = false; // pour v�rifier si on a boug� au moins une case apr�s le d�placement, avant d'en rajouter une nouvelle
         for (int i = 0; i < TAILLE; i++) {
@@ -137,6 +149,9 @@ public class Grille implements Parametres {
                     this.deplacerCasesRecursif(extremites, i, direction, 0);
                     break;
             }
+        }
+        if(this.player instanceof Humain) {
+        	((Humain) this.player).setUndo(false);
         }
         return deplacement;
     }
@@ -172,6 +187,7 @@ public class Grille implements Parametres {
                     break;
             }
         }
+
         return deplacement;
     }
  
@@ -231,6 +247,7 @@ public class Grille implements Parametres {
 	    	}
 	        extremite.setValeur(valeur);
 	        changerScore(valeur);
+
 
 	        
 	        
