@@ -75,8 +75,6 @@ public class Grille implements Parametres {
 		for(Case c : grille){
 			this.grille.add(c);
 		}
-		
-
     }
 
     public int getValeurMax() {
