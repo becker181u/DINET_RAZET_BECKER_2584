@@ -13,6 +13,10 @@ public abstract class Joueur {
         score=0;
 	}
 	
+	public void annulerCoup() {
+		
+	}
+	
 	public int saisieDplcmt(int joueur){
 		return 0;
 	}

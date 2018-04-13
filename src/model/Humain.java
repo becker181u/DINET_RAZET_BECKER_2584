@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Humain extends Joueur implements Parametres{
@@ -16,6 +17,24 @@ public class Humain extends Joueur implements Parametres{
 		super();
 		cptUndo=5;
 		undo=false;
+	}
+	
+	public void setUndo(boolean b) {
+		this.undo=b;
+	}
+	
+	public void annulerDeplacement() {
+		HashSet<Case> prec = this.grille.getGrillePrec();
+		int score=this.grille.getScorePrec();
+		
+		if(cptUndo>0 && this.undo==false) {
+			this.grille.setGrille(prec);
+			this.setScore(score);
+			this.cptUndo=-1;
+			this.undo=true;
+		}
+		
+		
 	}
 	
 	public int saisieDplcmt(int joueur){
