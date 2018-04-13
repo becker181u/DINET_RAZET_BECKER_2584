@@ -8,10 +8,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import model.Partie;
 
-public class MenuViewController implements Initializable {
-	
+public class MenuJoueurDeuxViewController implements Initializable {
+
 	@FXML
-	private Button button_choisir_humain, button_choisir_random, button_choisir_IA;
+	private Button btn_choix_humain, btn_choix_random, btn_choix_IA;
 	
 	private Partie partie;
 
@@ -22,34 +22,26 @@ public class MenuViewController implements Initializable {
 
 	}
 	
-	public MenuViewController(){
-		this.partie = new Partie(true);
-	}
-	
-	public MenuViewController(Partie partie) {
+	public void initModel(Partie partie) {
+		if (this.partie != null) {
+            throw new IllegalStateException("Partie can only be initialized once");
+        }
 		this.partie = partie;
 	}
 	
 	@FXML
 	public void choisirHumain() {
-		this.partie.choixJoueur(1,1);
-		this.choisirSecondJoueur();
+		this.partie.choixJoueur(2,1);
 	}
 	
 	@FXML
 	public void choisirRandom() {
-		this.partie.choixJoueur(1,2);
-		this.choisirSecondJoueur();
+		this.partie.choixJoueur(2,2);
 	}
 	
 	@FXML
 	public void choisirIA() {
-		this.partie.choixJoueur(1,3);
-		this.choisirSecondJoueur();
-	}
-	
-	private void choisirSecondJoueur() {
-		new MenuViewController(partie);
+		this.partie.choixJoueur(2,3);
 	}
 
 	public void setMainApp(Mainfx mainApp) {

@@ -29,7 +29,7 @@ public class MainViewController implements Initializable, Parametres {
 	
 	private Partie partie;
 	
-	public MainViewController(Partie partie) {
+	public void initModel(Partie partie) {
 		this.partie = partie;
 		//generation de la grille
 		String valeur = "";
@@ -41,7 +41,7 @@ public class MainViewController implements Initializable, Parametres {
 		for(Case c : partie.joueur2.grille.getGrille()) {
 			valeur = String.valueOf(c.getValeur());
 			Pane pane = new Pane(new Label(valeur));
-			grilleJoueur1.add(pane, c.getY(), c.getX());
+			grilleJoueur2.add(pane, c.getY(), c.getX());
 		}
 	}
 	

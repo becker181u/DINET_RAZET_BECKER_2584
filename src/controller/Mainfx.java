@@ -8,24 +8,64 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.Partie;
 
 public class Mainfx extends Application {
 	
-	private Stage primaryStage;
-	private BorderPane rootLayout;
-
+	BorderPane root;
+	Stage primaryStage;
+	
 	@Override
 	public void start(Stage primaryStage) {
-		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Duo 2543");
+		try {
 		
-		initRootLayout();
+		BorderPane root = new BorderPane();
 		
-		showMainView();
-	}
 
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Mainfx.class.getResource("../view/menuJoueurUnView.fxml"));
+        AnchorPane menuJoueurUnView = (AnchorPane) loader.load();
+        root.setCenter(menuJoueurUnView);
+        MenuJoueurUnViewController menuUnController = loader.getController();
+        menuUnController.setMainApp(this);
+
+        Partie partie = new Partie(true);
+        menuUnController.initModel(partie);
+        
+        Scene scene = new Scene(root, 800, 600);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        
+		}catch(IOException ioe){
+			ioe.printStackTrace();
+		}
+	}
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public void showMenuJoueurDeuxView() {
+		try {
+		root = new BorderPane();
+		primaryStage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		
+        loader.setLocation(Mainfx.class.getResource("../view/menuJoueurDeuxView.fxml"));
+        AnchorPane menuJoueurDeuxView = (AnchorPane) loader.load();
+        root.setCenter(menuJoueurDeuxView);
+        MenuJoueurDeuxViewController menuDeuxController = loader.getController();
+        menuDeuxController.setMainApp(this);
+
+        Partie partie = new Partie(true);
+        menuDeuxController.initModel(partie);
+        
+        Scene scene = new Scene(root, 800, 600);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        
+		}catch(IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 	
 	/**
@@ -36,9 +76,9 @@ public class Mainfx extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Mainfx.class.getResource("../view/rootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
+            root = (BorderPane) loader.load();
             // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout);
+            Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
@@ -67,8 +107,8 @@ public class Mainfx extends Application {
             
             loader.setLocation(Mainfx.class.getResource("../view/menuJoueurUnView.fxml"));
             AnchorPane menuJoueurUnView = (AnchorPane) loader.load();
-            rootLayout.setCenter(menuJoueurUnView);
-            MenuViewController controller = loader.getController();
+            root.setCenter(menuJoueurUnView);
+            MenuJoueurUnViewController controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
