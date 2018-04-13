@@ -10,6 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import model.Case;
 import model.Parametres;
 import model.Partie;
 
@@ -29,8 +30,19 @@ public class MainViewController implements Initializable, Parametres {
 	private Partie partie;
 	
 	public MainViewController(Partie partie) {
-		
 		this.partie = partie;
+		//generation de la grille
+		String valeur = "";
+		for(Case c : partie.joueur1.grille.getGrille()) {
+			valeur = String.valueOf(c.getValeur());
+			Pane pane = new Pane(new Label(valeur));
+			grilleJoueur1.add(pane, c.getY(), c.getX());
+		}
+		for(Case c : partie.joueur2.grille.getGrille()) {
+			valeur = String.valueOf(c.getValeur());
+			Pane pane = new Pane(new Label(valeur));
+			grilleJoueur1.add(pane, c.getY(), c.getX());
+		}
 	}
 	
 	@Override

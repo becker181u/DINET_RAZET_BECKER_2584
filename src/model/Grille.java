@@ -140,6 +140,7 @@ public class Grille implements Parametres {
         }
         return deplacement;
     }
+    
     public boolean lanceurDeplacerCasesIa(int direction) {
     	
 
