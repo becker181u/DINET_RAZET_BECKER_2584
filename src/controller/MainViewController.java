@@ -3,15 +3,18 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.sun.prism.paint.Color;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+import javafx.scene.paint.Paint;
 import model.Case;
 import model.Parametres;
 import model.Partie;
@@ -38,11 +41,15 @@ public class MainViewController implements Initializable, Parametres {
 		for(Case c : partie.joueur1.grille.getGrille()) {
 			valeur = String.valueOf(c.getValeur());
 			Pane pane = new Pane(new Label(valeur));
+			pane.setMinWidth(10);
+			pane.setMinHeight(10);
+			pane.setBackground(new Background(new BackgroundFill(Paint.valueOf("red"), null, null)));
 			grilleJoueur1.add(pane, c.getY(), c.getX());
 		}
 		for(Case c : partie.joueur2.grille.getGrille()) {
 			valeur = String.valueOf(c.getValeur());
 			Pane pane = new Pane(new Label(valeur));
+			pane.setBackground(new Background(new BackgroundFill(Paint.valueOf("yellow"), null, null)));
 			grilleJoueur2.add(pane, c.getY(), c.getX());
 		}
 	}
@@ -109,25 +116,28 @@ public class MainViewController implements Initializable, Parametres {
 		}
 		System.out.println(partie.joueur1.grille.toHTML());
 		System.out.println("Update");
-		update();
+		this.update();
 		
 	}
 	
 	public void update() {
 		String valeur = "";
-		grilleJoueur1 = new GridPane();
-		grilleJoueur2 = new GridPane();
-		for(Case c : partie.joueur1.grille.getGrille()) {
+		this.grilleJoueur1 = new GridPane();
+		this.grilleJoueur2 = new GridPane();
+		for(Case c : this.partie.joueur1.grille.getGrille()) {
 			valeur = String.valueOf(c.getValeur());
 			Pane pane = new Pane(new Label(valeur));
-			grilleJoueur1.add(pane, c.getY(), c.getX());
+			this.grilleJoueur1.add(pane, c.getY(), c.getX());
 		}
-		for(Case c : partie.joueur2.grille.getGrille()) {
+		for(Case c : this.partie.joueur2.grille.getGrille()) {
+			System.out.println("case "+c.getValeur());
 			valeur = String.valueOf(c.getValeur());
 			Pane pane = new Pane(new Label(valeur));
-			grilleJoueur2.add(pane, c.getY(), c.getX());
+			System.out.println(pane.getAccessibleText());
+			this.grilleJoueur2.add(pane, c.getY(), c.getX());
 		}
-		
+		this.score_un.setText(String.valueOf(this.partie.joueur1.getScore()));
+		this.score_deux.setText(String.valueOf(this.partie.joueur2.getScore()));
 	}
 	
 	/**

@@ -29,7 +29,12 @@ public class Ordinateur extends Joueur implements Parametres{
 			default:
 				break;
 			}
-			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			test = this.grille.lanceurDeplacerCases(direction);
 		}
 		

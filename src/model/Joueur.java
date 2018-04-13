@@ -17,9 +17,7 @@ public abstract class Joueur {
 		
 	}
 	
-	public int saisieDplcmt(int joueur){
-		return 0;
-	}
+	public abstract int saisieDplcmt(int joueur);
 
 	public int getScore() {
 		return score;
